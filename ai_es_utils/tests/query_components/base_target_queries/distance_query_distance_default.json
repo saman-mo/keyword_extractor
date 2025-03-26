@@ -1,0 +1,18 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "geo_distance": {
+            "distance": 25000,
+            "distance_type": "arc",
+            "geoPoint": [
+              13.404954,
+              52.52000659999999
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

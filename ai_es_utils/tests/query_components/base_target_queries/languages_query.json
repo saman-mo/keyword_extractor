@@ -1,0 +1,18 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "query_string": {
+            "query": "german AND english",
+            "fields": [
+              "languagesString^0.5"
+            ],
+            "type": "best_fields",
+            "default_operator": "and"
+          }
+        }
+      ]
+    }
+  }
+}

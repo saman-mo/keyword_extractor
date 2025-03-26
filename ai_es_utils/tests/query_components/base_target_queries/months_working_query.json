@@ -1,0 +1,18 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "range": {
+            "monthsWorking": {
+              "include_lower": true,
+              "include_upper": true,
+              "from": 12,
+              "to": 36
+            }
+          }
+        }
+      ]
+    }
+  }
+}

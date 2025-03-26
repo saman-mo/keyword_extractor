@@ -1,0 +1,43 @@
+{
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "nested": {
+                                    "path": "jobs",
+                                    "query": {
+                                        "match_phrase": {
+                                            "jobs.notes": {
+                                                "query": "entwickler",
+                                                "_name": "job_title.jobs.notes.entwickler/in",
+                                                "boost": 0.5
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "nested": {
+                                    "path": "jobs",
+                                    "query": {
+                                        "match_phrase": {
+                                            "jobs.notes": {
+                                                "query": "entwicklerin",
+                                                "_name": "job_title.jobs.notes.entwickler/in",
+                                                "boost": 0.5
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "_name": "job_title"
+                    }
+                }
+            ]
+        }
+    }
+}

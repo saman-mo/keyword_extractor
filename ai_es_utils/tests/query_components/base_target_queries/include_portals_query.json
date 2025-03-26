@@ -1,0 +1,17 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "terms": {
+            "_class": [
+              "network1",
+              "network2",
+              "network3"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

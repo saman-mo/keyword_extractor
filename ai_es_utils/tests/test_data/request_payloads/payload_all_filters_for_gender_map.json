@@ -1,0 +1,52 @@
+{
+  "query": {
+    "jobTitle": "java developer/in",
+    "skills": [
+      "j2ee"
+    ],
+    "industryCode": "001",
+    "location": "Kiel",
+    "distance": 50,
+    "yearsWorkingMin": 1,
+    "yearsWorkingMax": 4,
+    "excludePortals": [],
+    "includePortals": [
+      "bintray",
+      "techgig"
+    ],
+    "languages": [
+      "spanish",
+      "deutsch"
+    ],
+    "worksAt": [
+      "google"
+    ],
+    "worksAtExclude": [],
+    "previouslyAt": [],
+    "previouslyAtExclude": [
+      "google"
+    ],
+    "relevance": 39,
+    "mobility": 55,
+    "changeProbability": 89,
+    "hasEmail": true,
+    "hasPhone": true,
+    "isMale": true,
+    "studentsOnly": true,
+    "freelancerOnly": true,
+    "recruiterOnly": true,
+    "consultantsOnly": true,
+    "entrepreneursOnly": true,
+    "scientistsOnly": true,
+    "executiveOnly": true,
+    "country": {
+      "text": "Germany",
+      "value": "DE"
+    }
+  },
+  "filter": {
+    "sort": "relevance",
+    "offset": 0,
+    "max": 30
+  }
+}

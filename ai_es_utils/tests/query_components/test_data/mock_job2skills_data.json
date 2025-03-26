@@ -1,0 +1,24 @@
+{
+  "developer": {
+    "angular 6": -10.7244,
+    "asp.net mvc": -10.901,
+    "typescript": -10.9181,
+    "angularjs": -10.9568,
+    "angular 2+": -10.9996,
+    "backend": -11.0172,
+    "ruby on rails": -11.0565,
+    "javascript": -11.0734,
+    "angular": -11.0964,
+    "software developer": -11.0985,
+    "agile development": -11.1094,
+    "react": -11.1209,
+    "actionscript3": -11.1349,
+    "mvc": -11.1459,
+    "jquery": -11.1514,
+    "ajax": -11.1572,
+    "asp.net": -11.1608,
+    "model-view-controller (mvc)": -11.164,
+    "object oriented programming (oop)": -11.1754,
+    "symfony": -11.2049
+  }
+}

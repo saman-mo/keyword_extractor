@@ -1,0 +1,40 @@
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "bool": {
+            "should": [
+              {
+                "match_phrase": {
+                  "jobs.skills": {
+                    "query": "clean",
+                    "_name": "skill.jobs.skills.clean",
+                    "boost": 2.0
+                  }
+                }
+              }
+            ],
+            "minimum_should_match": 1
+          }
+        },
+        {
+          "bool": {
+            "should": [
+              {
+                "match_phrase": {
+                  "jobs.skills": {
+                    "query": "juggling",
+                    "_name": "skill.jobs.skills.juggling",
+                    "boost": 2.0
+                  }
+                }
+              }
+            ],
+            "minimum_should_match": 1
+          }
+        }
+      ]
+    }
+  }
+}

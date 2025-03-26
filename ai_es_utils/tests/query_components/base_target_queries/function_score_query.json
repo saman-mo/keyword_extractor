@@ -1,0 +1,30 @@
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "function_score": {
+            "boost": 1.0,
+            "functions": [
+              {
+                "field_value_factor": {
+                  "factor": 1,
+                  "field": "ml5.profileQuality",
+                  "missing": 4,
+                  "modifier": "sqrt"
+                }
+              }
+            ],
+            "max_boost": 3.4028235e+38,
+            "query": {
+              "match_all": {
+                "boost": 1
+              }
+            },
+            "score_mode": "multiply"
+          }
+        }
+      ]
+    }
+  }
+}

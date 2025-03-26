@@ -1,0 +1,35 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "bool": {
+            "should": [
+              {
+                "query_string": {
+                  "query": "DE OR de",
+                  "fields": [
+                    "address.countryCode^1.0"
+                  ],
+                  "type": "best_fields",
+                  "default_operator": "or"
+                }
+              },
+              {
+                "query_string": {
+                  "query": " \"Deutschland\"  OR  \"Allemagne\"  OR  \"Alemania\"  OR  \"Germany\" ",
+                  "fields": [
+                    "location^1.0"
+                  ],
+                  "type": "best_fields",
+                  "default_operator": "or"
+                }
+              }
+            ],
+            "_name": "country"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "query": {
+    "jobTitle": "Software Engineer",
+    "skills": [],
+    "excludePortals": [],
+    "includePortals": [
+      "github"
+    ],
+    "languages": [],
+    "worksAt": [],
+    "worksAtExclude": [],
+    "previouslyAt": [],
+    "previouslyAtExclude": [],
+    "country": {
+      "text": "",
+      "value": ""
+    }
+  },
+  "filter": {
+    "sort": "relevance",
+    "offset": 0,
+    "max": 30
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "nested": {
+            "path": "jobs",
+            "query": {
+              "term": {
+                "jobs.industryCode": "010"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

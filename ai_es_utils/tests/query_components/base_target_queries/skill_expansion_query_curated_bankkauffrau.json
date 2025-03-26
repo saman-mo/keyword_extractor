@@ -1,0 +1,29 @@
+{
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "query_string": {
+                                    "query": " \"verm\u00f6gensberatung\"  OR  \"privatkundenberatung\"  OR  \"immobilienfinanzierung\"  OR  \"individuelle anlageberatung\"  OR  \"kundenberatung privatkunden\"  OR  \"anlageberatung\"  OR  \"privatkredite\"  OR  \"geldanlage\"  OR  \"finanzierungskonzepte\"  OR  \"finanzprodukt\"  OR  \"bankkaufmann\"  OR  \"verm\u00f6gensoptimierung\"  OR  \"privatkundenbetreuung\"  OR  \"finanzberatung\"  OR  \"wertpapiergesch\u00e4ft\"  OR  \"wertpapierberatung\"  OR  \"baufinanzierungsberatung\"  OR  \"kreditgesch\u00e4ft\"  OR  \"kreditberatung\"  OR  \"altersvorsorgeberatung\"  OR  \"verm\u00f6gensstrukturierung\"  OR  \"verm\u00f6gensaufbau\"  OR  \"vorsorgeberatung\"  OR  \"baufinanzierungen\"  OR  \"wertpapier\"  OR  \"ratenkredit\"  OR  \"versicherungsberatung\" ",
+                                    "fields": [
+                                        "skills^3.0",
+                                        "jobTitle^2.0",
+                                        "previousJobTitles^1.0",
+                                        "jobs.notes^0.5"
+                                    ],
+                                    "type": "cross_fields",
+                                    "default_operator": "AND",
+                                    "_name": "job_title_expansion.skill_expansion"
+                                }
+                            }
+                        ],
+                        "_name": "job_title_expansion"
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "bool": {
+            "_name": "test",
+            "minimum_should_match": 1
+          }
+        }
+      ]
+    }
+  }
+}

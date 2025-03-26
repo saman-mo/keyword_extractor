@@ -1,0 +1,43 @@
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "bool": {
+            "should": [
+              {
+                "nested": {
+                  "path": "jobs",
+                  "query": {
+                    "match_phrase": {
+                      "jobs.notes": {
+                        "query": "senior developer",
+                        "_name": "job_title_expansion.jobs.notes.senior developer",
+                        "boost": 0.5
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "nested": {
+                  "path": "jobs",
+                  "query": {
+                    "match_phrase": {
+                      "jobs.notes": {
+                        "query": "senior ecommerce developer",
+                        "_name": "job_title_expansion.jobs.notes.senior ecommerce developer",
+                        "boost": 0.5
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "_name": "job_title_expansion"
+          }
+        }
+      ]
+    }
+  }
+}

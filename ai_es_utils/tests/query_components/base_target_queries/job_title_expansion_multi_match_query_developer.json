@@ -1,0 +1,37 @@
+{
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "multi_match": {
+                                    "query": "senior developer",
+                                    "type": "phrase",
+                                    "fields": [
+                                        "jobTitle^2.0",
+                                        "previousJobTitles"
+                                    ],
+                                    "_name": "job_title_expansion.senior developer"
+                                }
+                            },
+                            {
+                                "multi_match": {
+                                    "query": "senior ecommerce developer",
+                                    "type": "phrase",
+                                    "fields": [
+                                        "jobTitle^2.0",
+                                        "previousJobTitles"
+                                    ],
+                                    "_name": "job_title_expansion.senior ecommerce developer"
+                                }
+                            }
+                        ],
+                        "_name": "job_title_expansion"
+                    }
+                }
+            ]
+        }
+    }
+}

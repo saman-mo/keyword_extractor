@@ -1,0 +1,622 @@
+{
+  "payload": {
+    "query": {
+      "jobTitle": "java developer",
+      "skills": [
+        "j2ee"
+      ],
+      "industryCode": "001",
+      "location": "Kiel",
+      "distance": 50,
+      "yearsWorkingMin": 1,
+      "yearsWorkingMax": 4,
+      "excludePortals": [],
+      "includePortals": [
+        "bintray",
+        "techgig"
+      ],
+      "languages": [
+        "spanish",
+        "deutsch"
+      ],
+      "worksAt": [
+        "google"
+      ],
+      "worksAtExclude": [],
+      "previouslyAt": [],
+      "previouslyAtExclude": [
+        "google"
+      ],
+      "relevance": 39,
+      "mobility": 55,
+      "changeProbability": 89,
+      "hasEmail": true,
+      "hasPhone": true,
+      "isMale": true,
+      "studentsOnly": true,
+      "freelancerOnly": true,
+      "recruiterOnly": true,
+      "consultantsOnly": true,
+      "entrepreneursOnly": true,
+      "scientistsOnly": true,
+      "executiveOnly": true,
+      "country": {
+        "text": "Germany",
+        "value": "DE"
+      }
+    },
+    "filter": {
+      "sort": "relevance",
+      "offset": 0,
+      "max": 30
+    }
+  },
+  "autoquery": {
+    "query": {
+      "function_score": {
+        "functions": [
+          {
+            "gauss": {
+              "lastScraped": {
+                "decay": 0.3,
+                "offset": "30d",
+                "origin": "now",
+                "scale": "90d"
+              }
+            }
+          }
+        ],
+        "query": {
+          "bool": {
+            "should": [
+              {
+                "match": {
+                  "location": "Kiel"
+                }
+              }
+            ],
+            "must": [
+              {
+                "nested": {
+                  "path": "jobs",
+                  "query": {
+                    "bool": {
+                      "must": [
+                        {
+                          "term": {
+                            "jobs.industryCode": "001"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "nested": {
+                        "path": "jobs",
+                        "query": {
+                          "query_string": {
+                            "fields": [
+                              "jobs.jobTitle"
+                            ],
+                            "query": "Vertriebsleit* OR Niederlassungsleit* OR Hausleit* OR \"Head of\" OR VP OR teamlead OR \"team lead\" OR lead OR director OR Direktor OR Regionaldirektor OR Salesdirektor OR CEO OR \"Chief Executive Officer\" OR COO OR \"Chief Operating Officer\" OR CPO OR Chief OR \"Chief Product Officer\" OR CTO OR \"Chief Technology Officer\" OR CFO OR \"Chief Financial Officer\" OR CMO OR \"Chief Marketing Officer\" OR CSO OR \"Chief Sales Officer\" OR \"Chief Security Officer\" OR CHRO OR \"Chief Human Resources Officer\" OR CDO OR \"Chief Data Officer\" OR CRO OR \"Chief Revenue Officer\" OR \"executive officer\" OR chairman OR \"member of board\" OR \"member of the board\" OR \"board member\" OR \"executive partner\" OR \"member of the board of directors\" OR Gesch\u00e4ftsf\u00fchrer* OR \"gesch\u00e4ftsf\u00fchrender Teilhaber\" OR Leit* OR Bereichsleit* OR Teamleit* OR Abteilungsleit* OR Filialleit* OR Schichtleit* OR Personalleit* OR Personalchef* OR \"group head\" OR Prokurist OR president OR \"managing director\" OR \"managing partner\" OR Vorstandsvorsitzender OR \"vorsitzender des vorstandes\" OR Vorstandsmitglied OR \"mitglied im vorstand\" OR \"Vorstand f\u00fcr\" OR \"Vorst\u00e4ndin f\u00fcr\" OR \"gesch\u00e4ftsf\u00fchrender vorstand\" OR hauptgesch\u00e4ftsf\u00fchrer OR aufsichtsratsvorsitzender OR \"vorsitzender des aufsichtsrats\" OR \"gesch\u00e4ftsf\u00fchrender partner\" OR Finanzvorstand OR Personalvorstand OR \"Chef vom Dienst\" OR Redaktionsleit* OR Restaurantleit* OR K\u00fcchenchef* OR Chefkoch OR Chefk\u00f6chin OR Rezeptionsleit* OR Bauleit* OR Oberarzt OR F\u00fchrungsposition OR verkaufsleiter "
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "query_string": {
+                        "query": "Vertriebsleit* OR Niederlassungsleit* OR Hausleit* OR \"Head of\" OR VP OR teamlead OR \"team lead\" OR lead OR director OR Direktor OR Regionaldirektor OR Salesdirektor OR CEO OR \"Chief Executive Officer\" OR COO OR \"Chief Operating Officer\" OR CPO OR Chief OR \"Chief Product Officer\" OR CTO OR \"Chief Technology Officer\" OR CFO OR \"Chief Financial Officer\" OR CMO OR \"Chief Marketing Officer\" OR CSO OR \"Chief Sales Officer\" OR \"Chief Security Officer\" OR CHRO OR \"Chief Human Resources Officer\" OR CDO OR \"Chief Data Officer\" OR CRO OR \"Chief Revenue Officer\" OR \"executive officer\" OR chairman OR \"member of board\" OR \"member of the board\" OR \"board member\" OR \"executive partner\" OR \"member of the board of directors\" OR Gesch\u00e4ftsf\u00fchrer* OR \"gesch\u00e4ftsf\u00fchrender Teilhaber\" OR Leit* OR Bereichsleit* OR Teamleit* OR Abteilungsleit* OR Filialleit* OR Schichtleit* OR Personalleit* OR Personalchef* OR \"group head\" OR Prokurist OR president OR \"managing director\" OR \"managing partner\" OR Vorstandsvorsitzender OR \"vorsitzender des vorstandes\" OR Vorstandsmitglied OR \"mitglied im vorstand\" OR \"Vorstand f\u00fcr\" OR \"Vorst\u00e4ndin f\u00fcr\" OR \"gesch\u00e4ftsf\u00fchrender vorstand\" OR hauptgesch\u00e4ftsf\u00fchrer OR aufsichtsratsvorsitzender OR \"vorsitzender des aufsichtsrats\" OR \"gesch\u00e4ftsf\u00fchrender partner\" OR Finanzvorstand OR Personalvorstand OR \"Chef vom Dienst\" OR Redaktionsleit* OR Restaurantleit* OR K\u00fcchenchef* OR Chefkoch OR Chefk\u00f6chin OR Rezeptionsleit* OR Bauleit* OR Oberarzt OR F\u00fchrungsposition OR verkaufsleiter ",
+                        "fields": [
+                          "jobTitle",
+                          "previousJobTitles"
+                        ],
+                        "type": "best_fields",
+                        "default_operator": "or"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "match_phrase": {
+                        "skills": "j2ee"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "j2ee"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "j2ee"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "industry": "j2ee"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "study": "j2ee"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              },
+              {
+                "function_score": {
+                  "boost": 1.0,
+                  "functions": [
+                    {
+                      "field_value_factor": {
+                        "factor": 1,
+                        "field": "ml5.profileQuality",
+                        "missing": 4,
+                        "modifier": "sqrt"
+                      }
+                    }
+                  ],
+                  "max_boost": 3.4028235e+38,
+                  "query": {
+                    "match_all": {
+                      "boost": 1
+                    }
+                  },
+                  "score_mode": "multiply"
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "senior java developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "senior java developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "senior java engineer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "senior java engineer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "scala developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "scala developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "junior java developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "junior java developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java team leader"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java team leader"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "freelance java developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "freelance java developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "j2ee developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "j2ee developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "senior j2ee consultant"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "senior j2ee consultant"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java software developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java software developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java architect"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java architect"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java analyst developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java analyst developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "middleware developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "middleware developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java j2ee developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java j2ee developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java full stack developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java full stack developer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java analyst programmer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java analyst programmer"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java tech lead"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java tech lead"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java developer contract"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java developer contract"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java consultant"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java consultant"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "jobTitle": "java instructor"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "previousJobTitles": "java instructor"
+                      }
+                    },
+                    {
+                      "query_string": {
+                        "query": " \"assertj\"  OR  \"enterprise edition\"  OR  \"hibernate-framework\"  OR  \"servlets\"  OR  \"spring framework\"  OR  \"hibernate\"  OR  \"spring\"  OR  \"apache maven\"  OR  \"richfaces\"  OR  \"intellij idea\"  OR  \"jee\"  OR  \"jsf2\"  OR  \"maven\"  OR  \"junit\"  OR  \"jpa\"  OR  \"jsf\"  OR  \"java//j2ee\"  OR  \"core java\"  OR  \"servlet\"  OR  \"spring mvc\" ",
+                        "fields": [
+                          "skills"
+                        ],
+                        "type": "best_fields",
+                        "default_operator": "or",
+                        "minimum_should_match": 4
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "query_string": {
+                        "query": "google",
+                        "fields": [
+                          "company^1.0"
+                        ],
+                        "type": "best_fields",
+                        "default_operator": "or"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "query_string": {
+                        "query": "NOT (google)",
+                        "fields": [
+                          "previousCompanies^1.0"
+                        ],
+                        "type": "best_fields",
+                        "default_operator": "or"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
+              }
+            ],
+            "must_not": [
+              {
+                "match": {
+                  "_hideInSearch": true
+                }
+              }
+            ],
+            "filter": [
+              {
+                "terms": {
+                  "_class": [
+                    "bintray",
+                    "techgig"
+                  ]
+                }
+              },
+              {
+                "term": {
+                  "gender": "m"
+                }
+              },
+              {
+                "term": {
+                  "isStudent": true
+                }
+              },
+              {
+                "term": {
+                  "isFreelancer": true
+                }
+              },
+              {
+                "term": {
+                  "isRecruiter": true
+                }
+              },
+              {
+                "term": {
+                  "isConsultant": true
+                }
+              },
+              {
+                "term": {
+                  "isEntrepreneur": true
+                }
+              },
+              {
+                "term": {
+                  "isScientist": true
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "query_string": {
+                        "query": "spanish AND deutsch",
+                        "fields": [
+                          "languagesString^1.0"
+                        ],
+                        "type": "best_fields",
+                        "default_operator": "or"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "range": {
+                  "monthsWorking": {
+                    "include_lower": true,
+                    "include_upper": true,
+                    "from": 12,
+                    "to": 48
+                  }
+                }
+              },
+              {
+                "range": {
+                  "mobility": {
+                    "gte": 55
+                  }
+                }
+              },
+              {
+                "range": {
+                  "changeProbability": {
+                    "gte": 89
+                  }
+                }
+              },
+              {
+                "term": {
+                  "hasPhone": true
+                }
+              },
+              {
+                "term": {
+                  "hasEmail": true
+                }
+              },
+              {
+                "geo_distance": {
+                  "distance": 50000,
+                  "distance_type": "arc",
+                  "geoPoint": [
+                    10.13489,
+                    54.32133
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "query_string": {
+                        "query": "DE OR de",
+                        "fields": [
+                          "address.countryCode^1.0"
+                        ],
+                        "type": "best_fields",
+                        "default_operator": "or"
+                      }
+                    },
+                    {
+                      "query_string": {
+                        "query": " \"Deutschland\"  OR  \"Allemagne\"  OR  \"Alemania\"  OR  \"Germany\" ",
+                        "fields": [
+                          "location^1.0"
+                        ],
+                        "type": "best_fields",
+                        "default_operator": "or"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "sort": [
+      {
+        "_score": {
+          "order": "desc"
+        }
+      }
+    ],
+    "from": 0,
+    "size": 30,
+    "highlight": {
+      "fields": {
+        "company": {
+        },
+        "email": {
+        },
+        "jobTitle": {
+        },
+        "jobs.jobTitle": {
+        },
+        "jobs.notes": {
+        },
+        "location": {
+        },
+        "previousCompanies": {
+        },
+        "previousJobTitles": {
+        },
+        "skills": {
+        }
+      },
+      "post_tags": "</mark>",
+      "pre_tags": "<mark>",
+      "require_field_match": false
+    },
+    "timeout": "59s",
+    "track_scores": true
+  }
+}

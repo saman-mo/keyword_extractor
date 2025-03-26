@@ -1,0 +1,17 @@
+{
+    "query": {
+        "bool": {
+            "must_not": [
+                {
+                    "terms": {
+                        "_class": [
+                            "network1",
+                            "network2",
+                            "network3"
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}

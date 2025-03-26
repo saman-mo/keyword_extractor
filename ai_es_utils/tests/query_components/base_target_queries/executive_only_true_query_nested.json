@@ -1,0 +1,42 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "bool": {
+            "should": [
+              {
+                "nested": {
+                  "path": "jobs",
+                  "query": {
+                    "query_string": {
+                      "fields": [
+                        "jobs.jobTitle"
+                      ],
+                      "query": "Vertriebsleit* OR Chief",
+                      "type": "best_fields",
+                      "default_operator": "or"
+                    }
+                  }
+                }
+              },
+              {
+                "query_string": {
+                  "query": "Vertriebsleit* OR Chief",
+                  "fields": [
+                    "jobTitle",
+                    "previousJobTitles"
+                  ],
+                  "type": "best_fields",
+                  "default_operator": "or"
+                }
+              }
+            ],
+            "_name": "executive_only",
+            "minimum_should_match": 1
+          }
+        }
+      ]
+    }
+  }
+}

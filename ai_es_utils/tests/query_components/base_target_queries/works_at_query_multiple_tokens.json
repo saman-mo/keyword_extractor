@@ -1,0 +1,26 @@
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "bool": {
+            "should": [
+              {
+                "query_string": {
+                  "query": "(google AND gmbh) OR (Wow AND so AND cool AND company AND gmbh AND inc)",
+                  "fields": [
+                    "company^1.0"
+                  ],
+                  "type": "best_fields",
+                  "default_operator": "or"
+                }
+              }
+            ],
+            "_name": "works_at",
+            "minimum_should_match": 1
+          }
+        }
+      ]
+    }
+  }
+}

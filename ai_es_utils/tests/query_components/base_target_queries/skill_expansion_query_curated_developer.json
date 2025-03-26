@@ -1,0 +1,29 @@
+{
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "query_string": {
+                                    "query": " \"typescript\"  OR  \"angularjs\"  OR  \"angular 2+\"  OR  \"backend\"  OR  \"ruby on rails\"  OR  \"javascript\"  OR  \"angular\"  OR  \"software developer\"  OR  \"agile development\"  OR  \"react\"  OR  \"actionscript3\"  OR  \"mvc\"  OR  \"jquery\"  OR  \"ajax\"  OR  \"asp.net\"  OR  \"model-view-controller (mvc)\"  OR  \"object oriented programming (oop)\"  OR  \"symfony\" ",
+                                    "fields": [
+                                        "skills^3.0",
+                                        "jobTitle^2.0",
+                                        "previousJobTitles^1.0",
+                                        "jobs.notes^0.5"
+                                    ],
+                                    "type": "cross_fields",
+                                    "default_operator": "AND",
+                                    "_name": "job_title_expansion.skill_expansion"
+                                }
+                            }
+                        ],
+                        "_name": "job_title_expansion"
+                    }
+                }
+            ]
+        }
+    }
+}

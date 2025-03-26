@@ -1,0 +1,86 @@
+{
+  "direktor/in": {
+    "male": {
+      "jobTitle": "direktor",
+      "occurrenceCount": 8731
+    },
+    "female": {
+      "jobTitle": "direktorin",
+      "occurrenceCount": 1281
+    },
+    "normalized": {
+      "jobTitle": "direktor/in",
+      "occurrenceCount": 0
+    }
+  },
+  "entwickler/in": {
+    "male": {
+      "jobTitle": "entwickler",
+      "occurrenceCount": 0
+    },
+    "female": {
+      "jobTitle": "entwicklerin",
+      "occurrenceCount": 0
+    },
+    "normalized": {
+      "jobTitle": "entwickler/in",
+      "occurrenceCount": 0
+    }
+  },
+  "softwareentwickler/in": {
+    "male": {
+      "jobTitle": "softwareentwickler",
+      "occurrenceCount": 0
+    },
+    "female": {
+      "jobTitle": "softwareentwicklerin",
+      "occurrenceCount": 0
+    },
+    "normalized": {
+      "jobTitle": "softwareentwickler/in",
+      "occurrenceCount": 0
+    }
+  },
+  "anlageberater/in": {
+    "male": {
+      "jobTitle": "anlageberater",
+      "occurrenceCount": 1087
+    },
+    "female": {
+      "jobTitle": "anlageberaterin",
+      "occurrenceCount": 207
+    },
+    "normalized": {
+      "jobTitle": "anlageberater/in",
+      "occurrenceCount": 0
+    }
+  },
+  "bankkaufmann/-frau": {
+    "male": {
+      "jobTitle": "bankkaufmann",
+      "occurrenceCount": 10840
+    },
+    "female": {
+      "jobTitle": "bankkauffrau",
+      "occurrenceCount": 7542
+    },
+    "normalized": {
+      "jobTitle": "bankkaufmann/-frau",
+      "occurrenceCount": 693
+    }
+  },
+  "bankfachwirt/in": {
+    "male": {
+      "jobTitle": "bankfachwirt",
+      "occurrenceCount": 197
+    },
+    "female": {
+      "jobTitle": "bankfachwirtin",
+      "occurrenceCount": 159
+    },
+    "normalized": {
+      "jobTitle": "bankfachwirt/in",
+      "occurrenceCount": 0
+    }
+  }
+}

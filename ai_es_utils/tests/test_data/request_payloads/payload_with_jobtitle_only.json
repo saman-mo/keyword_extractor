@@ -1,0 +1,22 @@
+{
+  "query": {
+    "jobTitle": "Java Developer",
+    "skills": [],
+    "excludePortals": [],
+    "includePortals": [],
+    "languages": [],
+    "worksAt": [],
+    "worksAtExclude": [],
+    "previouslyAt": [],
+    "previouslyAtExclude": [],
+    "country": {
+      "text": "",
+      "value": ""
+    }
+  },
+  "filter": {
+    "sort": "relevance",
+    "offset": 0,
+    "max": 30
+  }
+}
