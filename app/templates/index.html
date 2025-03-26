@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<script src="/static/config.js"></script>
+<script>
+  console.log(window.CONFIG.BACKEND_URL);  // Should output the backend URL
+</script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyword Extractor</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f4f4; }
+
+        /* Login & Extractor container */
+        .container {
+            background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px; text-align: center;
+        }
+
+        /* Enlarged Description */
+        .description { font-size: 16px; color: #333; text-align: left; margin-bottom: 15px; line-height: 1.6; }
+
+        /* Inputs & Buttons */
+        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ddd; }
+        button { background: #007bff; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; font-size: 16px; }
+        button:hover { background: #0056b3; }
+        .logout-btn { background: red; }
+
+        /* Larger Job Ad Input */
+        textarea { height: 250px; font-size: 14px; }
+
+        /* Hidden sections */
+        .hidden { display: none; }
+
+        /* Result styling */
+        .result {
+            margin-top: 20px; padding: 15px; background: #eef; border-radius: 5px;
+            text-align: left; font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="container">
+        <h2>Login</h2>
+        <p class="description">
+            <strong style="font-size: 18px;">Keyword Extractor</strong> is a prototype tool designed to extract key insights from job advertisements.  
+            It analyzes job postings and retrieves **job titles, required skills, optional skills, company names, and job locations**.  
+            <br><br>
+            To access this tool, you need login credentials.  
+            Contact <strong>moein.saman@gmail.com</strong> to request access.
+        </p>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="loginError" style="color: red; font-size: 14px;"></p>
+    </div>
+
+    <!-- Keyword Extractor Page -->
+    <div id="extractorPage" class="container hidden">
+        <h2>Keyword Extractor</h2>
+        <textarea id="jobAd" placeholder="Enter job ad here..."></textarea>
+        <button onclick="extractKeywords()">Extract Keywords</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <div id="output" class="result"></div>
+    </div>
+
+    <script>
+        // Check if user is already logged in
+        window.onload = () => {
+            if (localStorage.getItem("token")) {
+                document.getElementById("loginPage").classList.add("hidden");
+                document.getElementById("extractorPage").classList.remove("hidden");
+            }
+        };
+
+        async function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (!username || !password) {
+                document.getElementById("loginError").innerText = "Enter username & password!";
+                return;
+            }
+            const backendUrl = window.CONFIG.BACKEND_URL;
+            const response = await fetch(`${backendUrl}/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                localStorage.setItem("token", data.token); 
+                document.getElementById("loginPage").classList.add("hidden");
+                document.getElementById("extractorPage").classList.remove("hidden");
+            } else {
+                document.getElementById("loginError").innerText = data.message || "Invalid login.";
+            }
+        }
+
+        async function extractKeywords() {
+            const jobAd = document.getElementById("jobAd").value;
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                alert("You must be logged in!");
+                return;
+            }
+            const backendUrl = window.CONFIG.BACKEND_URL;
+            const response = await fetch(`${backendUrl}/v1/keywords`, {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ jobAd })
+            });
+
+            const data = await response.json();
+            document.getElementById("output").innerHTML = `
+                <h3>Extracted Data:</h3>
+                <strong>Job Titles:</strong> ${data.jobTitles.join(", ") || "N/A"} <br>
+                <strong>Mandatory Skills:</strong> ${data.mandatorySkills.join(", ") || "N/A"} <br>
+                <strong>Optional Skills:</strong> ${data.optionalSkills.join(", ") || "N/A"} <br>
+                <strong>Locations:</strong> ${data.locations.join(", ") || "N/A"} <br>
+                <strong>Companies:</strong> ${data.companies.join(", ") || "N/A"}
+            `;
+        }
+
+        function logout() {
+            localStorage.removeItem("token");
+            document.getElementById("loginPage").classList.remove("hidden");
+            document.getElementById("extractorPage").classList.add("hidden");
+        }
+    </script>
+</body>
+</html>
