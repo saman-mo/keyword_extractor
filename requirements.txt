@@ -16,4 +16,4 @@ joblib
 sacremoses
 textdistance
 fastapi-jwt-auth
-./ai_es_utils.
+./ai_es_utils
