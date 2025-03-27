@@ -1,11 +1,9 @@
 import re
 import itertools
-from ai_es_utils.queries.models import GeoPoint, RequestPayload
 import pickle
 import collections
 
 import sacremoses as sm
-from ai_es_utils.services.enrichment.internal_job2skills_client import InternalJob2SkillsService
 import joblib
 import networkx as nx
 import numpy as np

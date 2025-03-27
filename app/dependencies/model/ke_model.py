@@ -19,7 +19,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 class KeywordExtractionModel(pl.LightningModule):
     def __init__(self, num_classes: int = cfg.num_classes,
-                 learning_rate: float() = cfg.learning_rate):
+                 learning_rate: float = cfg.learning_rate):
         super().__init__()
         self.save_hyperparameters()
 
