@@ -38,6 +38,20 @@
             margin-top: 20px; padding: 15px; background: #eef; border-radius: 5px;
             text-align: left; font-size: 14px;
         }
+
+         /* Loading indicator styling */
+         #loading {
+            display: none;  /* Initially hidden */
+            position: fixed; /* Center it on the screen */
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 1000; /* Ensure it appears above other content */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -66,12 +80,19 @@
         <div id="output" class="result"></div>
     </div>
 
+    <div id="loading">Loading, please wait...</div>
+
     <script>
         // Check if user is already logged in
         window.onload = () => {
+            localStorage.removeItem("token");
+
             if (localStorage.getItem("token")) {
                 document.getElementById("loginPage").classList.add("hidden");
                 document.getElementById("extractorPage").classList.remove("hidden");
+            } else {
+                document.getElementById("loginPage").classList.remove("hidden");
+                document.getElementById("extractorPage").classList.add("hidden");
             }
         };
 
@@ -108,15 +129,24 @@
                 alert("You must be logged in!");
                 return;
             }
+
+            document.getElementById("loading").style.display = "block";
+
             const backendUrl = window.CONFIG.BACKEND_URL;
-            const response = await fetch(`${backendUrl}/v1/keywords`, {
-                method: "POST",
-                headers: { 
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                },
-                body: JSON.stringify({ jobAd })
-            });
+
+            try {
+                const response = await fetch(`${backendUrl}/v1/keywords`, {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ jobAd })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
 
             const data = await response.json();
             document.getElementById("output").innerHTML = `
@@ -127,13 +157,19 @@
                 <strong>Locations:</strong> ${data.locations.join(", ") || "N/A"} <br>
                 <strong>Companies:</strong> ${data.companies.join(", ") || "N/A"}
             `;
+        } catch (error) {
+            console.error("Error during fetch:", error);
+            document.getElementById("loginError").innerText = "Error fetching data.";
+        } finally {
+            document.getElementById("loading").style.display = "none";
         }
-
+    }
         function logout() {
             localStorage.removeItem("token");
             document.getElementById("loginPage").classList.remove("hidden");
             document.getElementById("extractorPage").classList.add("hidden");
         }
+
     </script>
 </body>
 </html>

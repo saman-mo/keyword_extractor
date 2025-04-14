@@ -1,21 +1,15 @@
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.11
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.8
 
-ARG AWS_ACCESS_KEY_ID
-ARG AWS_SECRET_ACCESS_KEY
 
-# Copy the requirements file
-COPY ./* ./
+COPY ./app /app/app/
 
-RUN pip install --upgrade pip
+COPY requirements.txt requirements.txt
 
-# Install dependencies, including DVC for S3 support
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apt-get update && apt-get install -y \
+    python3 python3-pip
 
-# Pull data from DVC
-RUN dvc pull  # This fetches the tracked data from your DVC remote (S3)
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Expose the port for the FastAPI application
 EXPOSE 8000
 
-# Command to run the FastAPI application using Uvicorn
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

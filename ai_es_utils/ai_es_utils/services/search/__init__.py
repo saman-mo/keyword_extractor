@@ -1,2 +1,0 @@
-from .geolocation_service import GeoLocationFromCoordinatesService
-from .photon_geolocation_service import GetLocationFromPhotonAPI

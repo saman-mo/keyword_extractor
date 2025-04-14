@@ -16,7 +16,6 @@ from app.keyword_extractor_data_types import KeywordExtractorPayload
 from app.utils.ke_utils import sort_results
 
 import logging
-import sentry_sdk
 
 
 
@@ -29,8 +28,8 @@ def create_app():
             status.HTTP_500_INTERNAL_SERVER_ERROR: handle_internal_error
         }
     )
-    sentry_sdk.init(env_settings.SENTRY_DSN)
-    sentry_sdk.init(environment=env_settings.TW_ENV)
+    # sentry_sdk.init(env_settings.SENTRY_DSN)
+    # sentry_sdk.init(environment=env_settings.TW_ENV)
     app.add_middleware(
         CORSMiddleware,
         allow_credentials=True,
